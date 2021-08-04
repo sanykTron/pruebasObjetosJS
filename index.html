@@ -7,23 +7,38 @@
 </head>
 <body>
 
+	<input type="text" id="selector1" name="selector1" value="Taekwondo">
+	<input type="text" id="selector2" name="selector2" value="Taekwondo Women's Flyweight">
+	<input type="text" id="selector3" name="selector3">
+	<button onclick="mostrar()">Venga!</button>
+
+
+	<h2>Resultados:</h2>
+
+	<ol>
+  		<li id="Primero"></li>
+  		<li id="Segundo"></li>
+  		<li id="Tercero"></li>
+	</ol> 
+
+
 	<script type="text/javascript">
-		export default {
+		var objeto = {
 	  		"games": "Olympic Games",
 		  	"year": 2016,
 		  	"season": "summer",
 		  	"city": "Rio de Janeiro",
 		  	"athletes": [
-		    
+		    {
 		      "name": "Giovanni Abagnale",
 		      "gender": "M",
 		      "height": "198",
 		      "weight": "90",
-		      "sport": "Rowing",
+		      "sport": "Taekwondo",
 		      "team": "Italy",
 		      "noc": "ITA",
-		      "age": 21,
-		      "event": "Rowing Men's Coxless Pairs",
+		      "age": 22,
+		      "event": "Taekwondo Women's Flyweight",
 		      "medal": "Bronze"
 		    },
     		{
@@ -34,11 +49,161 @@
 		      "sport": "Taekwondo",
 		      "team": "Azerbaijan",
 		      "noc": "AZE",
-		      "age": 21,
+		      "age": 22,
 		      "event": "Taekwondo Women's Flyweight",
+		      "medal": "Silver"
+		    },
+		    {
+		      "name": "Ariel Ramirez",
+		      "gender": "H",
+		      "height": "165",
+		      "weight": "49",
+		      "sport": "Taekwondo",
+		      "team": "Azerbaijan",
+		      "noc": "AZE",
+		      "age": 24,
+		      "event": "Taekwondo Women's Flyweight",
+		      "medal": "Gold"
+		    },
+		    {
+		      "name": "Paulo",
+		      "gender": "H",
+		      "height": "165",
+		      "weight": "49",
+		      "sport": "Soccer",
+		      "team": "Azerbaijan",
+		      "noc": "AZE",
+		      "age": 21,
+		      "event": "Under 23",
+		      "medal": "Gold"
+		    },
+		    {
+		      "name": "Yoda",
+		      "gender": "H",
+		      "height": "165",
+		      "weight": "49",
+		      "sport": "Soccer",
+		      "team": "Azerbaijan",
+		      "noc": "AZE",
+		      "age": 24,
+		      "event": "Under 23",
+		      "medal": "Silver"
+		    },
+		    {
+		      "name": "Alonso",
+		      "gender": "H",
+		      "height": "165",
+		      "weight": "49",
+		      "sport": "Soccer",
+		      "team": "Azerbaijan",
+		      "noc": "AZE",
+		      "age": 22,
+		      "event": "Under 23",
 		      "medal": "Bronze"
-		    }]}
+		    }]
+		};
+
+		
+
+
+		function mostrar()
+		{
+			//por deporte
+			var selector1 = document.getElementById("selector1").value;
+			var selector2 = document.getElementById("selector2").value;
+			var selector3 = document.getElementById("selector3").value;
+
+			console.log(selector1+" "+selector2);
+
+			var coleccion = [];
+
+			for(let i = 0; i<(objeto.athletes).length; i++)
+			{
+				//busco en los objetos los que cumplan con el selector, en deporte.
+				if(objeto.athletes[i].sport == selector1)
+					//me traigo el objeto completo
+					coleccion.push(objeto.athletes[i]);
+
+				//const resultado = inventario.find( fruta => fruta.nombre === 'cerezas' );
+
+			}
+
+			
+
+			//ahora, tengo en la colección los objetos que me interesan (atletas completos)
+
+			//Voy por el selector2, event.
+
+			var coleccion2 = [];
+
+			for(let i = 0; i<(coleccion).length; i++)
+			{
+				//busco en los objetos los que cumplan con el selector2, en event
+				if(coleccion[i].event == selector2)
+					//me traigo el atleta que cumple con la condición de selector2.
+					coleccion2.push(coleccion[i]);
+
+				//const resultado = inventario.find( fruta => fruta.nombre === 'cerezas' );
+
+			}
+
+			ganadores = [];
+
+			for(let i = 0; i<(coleccion2).length; i++)
+			{
+				//busco en los objetos los que cumplan con el selector3, en medal
+				if(coleccion2[i].medal == "Gold")
+					//me traigo el atleta que cumple con la condición.
+					ganadores.push(coleccion2[0]);
+				else if(coleccion2[i].medal == "Silver")
+					ganadores.push(coleccion2[1]);
+				else if(coleccion2[i].medal == "Bronze")
+					ganadores.push(coleccion2[2]);
+
+				//const resultado = inventario.find( fruta => fruta.nombre === 'cerezas' );
+
+			}
+
+			//const found = ganadores.find(element => element.age = selector3);
+			
+
+			seleccionadosNivel3 = ganadores.filter(checkAdult)    // Returns [32, 33, 40]
+
+			function checkAdult(atleta) {
+  				return atleta.age == selector3;
+			}
+
+
+
+			if(ganadores.length != 0)
+				document.getElementById("Primero").innerHTML = "Primer Lugar: " + ganadores[0].name + ", edad: "+ganadores[0].age;
+			else
+				document.getElementById("Primero").innerHTML = "No hay coincidencias";	
+			if(ganadores.length != 0)
+				document.getElementById("Segundo").innerHTML = "Segundo Lugar: " + ganadores[1].name + ", edad: "+ganadores[1].age;
+			else
+				document.getElementById("Segundo").innerHTML = "No hay coincidencias";
+			if(ganadores.length != 0)
+				document.getElementById("Tercero").innerHTML = "Tercer Lugar: " + ganadores[2].name+ ", edad: "+ganadores[2].age;
+			else
+				document.getElementById("Tercero").innerHTML = "No hay coincidencias";
+
+			//const resultado = arreglo.find(atleta => atleta.name == selector);
+
+			for(let i = 0; i<seleccionadosNivel3.length; i++)
+			{
+				alert("Tienen "+selector3+ "años: " + seleccionadosNivel3[i].name);
+
+			}
+
+			
+
+		}
+		
+		
+
 	</script>
+
 
 </body>
 </html>

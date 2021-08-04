@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Objetos en JS</title>
+
+</head>
+<body>
+
+	<h1>Países</h1>
+	<ul id="paises"></ul>
+
+	<script type="module" src="athletes.js">
+		
+		
+
+		import * as myModule from 'athletes.js';
+
+		function mostrar()
+		{
+			
+		
+			let arregloPaises = [];
+			for(let i = 0; i<(objeto.athletes).length; i++)
+			{
+								
+					
+				arregloPaises.push(objeto.athletes[i].team);
+				
+			}
+
+			arregloPaises.sort();
+
+			const s = new Set(arregloPaises);
+
+			paises = Array.from(s);
+
+			document.getElementById('paises').innerHTML ='<li>' + paises.join('</li><li>') + '</li>'
+			
+
+		}
+		
+  			
+
+
+
+
+		
+		mostrar();
+		
+
+	</script>
+
+
+</body>
+</html>
