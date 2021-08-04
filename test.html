@@ -3,44 +3,148 @@
 <head>
 	<meta charset="utf-8">
 	<title>Objetos en JS</title>
-
+	<style>
+	div {
+  		border: 1px solid black;
+  		margin-bottom: 10px;
+	}
+	</style>
 </head>
 <body>
+	<div id="myDIV">
+	
+	</div>
 
-	<h1>Países</h1>
-	<ul id="paises"></ul>
 
-	<script type="module" src="athletes.js">
+	<script>
 		
 		
+		var objeto = {
+	  		"games": "Olympic Games",
+		  	"year": 2016,
+		  	"season": "summer",
+		  	"city": "Rio de Janeiro",
+		  	"athletes": [
+		    {
+		      "name": "Giovanni Abagnale",
+		      "gender": "M",
+		      "height": "198",
+		      "weight": "90",
+		      "sport": "Taekwondo",
+		      "team": "Italy",
+		      "noc": "ITA",
+		      "age": 22,
+		      "event": "Taekwondo Women's Flyweight",
+		      "medal": "Bronze"
+		    },
+    		{
+		      "name": "Patimat Abakarova",
+		      "gender": "F",
+		      "height": "165",
+		      "weight": "49",
+		      "sport": "Taekwondo",
+		      "team": "Azerbaijan",
+		      "noc": "AZE",
+		      "age": 22,
+		      "event": "Taekwondo Women's Flyweight",
+		      "medal": "Silver"
+		    },
+		    {
+		      "name": "Ariel Ramirez",
+		      "gender": "H",
+		      "height": "165",
+		      "weight": "49",
+		      "sport": "Taekwondo",
+		      "team": "Azerbaijan",
+		      "noc": "AZE",
+		      "age": 24,
+		      "event": "Taekwondo Women's Flyweight",
+		      "medal": "Gold"
+		    },
+		    {
+		      "name": "Paulo",
+		      "gender": "H",
+		      "height": "165",
+		      "weight": "49",
+		      "sport": "Soccer",
+		      "team": "Azerbaijan",
+		      "noc": "AZE",
+		      "age": 21,
+		      "event": "Under 23",
+		      "medal": "Gold"
+		    },
+		    {
+		      "name": "Yoda",
+		      "gender": "H",
+		      "height": "165",
+		      "weight": "49",
+		      "sport": "Soccer",
+		      "team": "Azerbaijan",
+		      "noc": "AZE",
+		      "age": 24,
+		      "event": "Under 23",
+		      "medal": "Silver"
+		    },
+		    {
+		      "name": "Alonso",
+		      "gender": "H",
+		      "height": "165",
+		      "weight": "49",
+		      "sport": "Soccer",
+		      "team": "Azerbaijan",
+		      "noc": "AZE",
+		      "age": 22,
+		      "event": "Under 23",
+		      "medal": "Bronze"
+		    }]
+		};
 
-		import * as myModule from 'athletes.js';
+		
 
 		function mostrar()
 		{
 			
-		
-			let arregloPaises = [];
+			//relleno de simios.
+			let arregloAtletas = [];
 			for(let i = 0; i<(objeto.athletes).length; i++)
 			{
 								
-					
-				arregloPaises.push(objeto.athletes[i].team);
+				//agrego simios que cumplan con la condición
+				if(objeto.athletes[i].team == "Azerbaijan")
+					arregloAtletas.push(objeto.athletes[i]);
 				
 			}
 
-			arregloPaises.sort();
+			arregloAtletas.sort();
 
-			const s = new Set(arregloPaises);
+			const s = new Set(arregloAtletas);
 
-			paises = Array.from(s);
+			atletasLimpiosOrdenados = Array.from(s);
 
-			document.getElementById('paises').innerHTML ='<li>' + paises.join('</li><li>') + '</li>'
+			//document.getElementById('paises').innerHTML ='<li>' + paises.join('</li><li>') + '</li>'
+
+
+			
+			
+			atletasLimpiosOrdenados.forEach(element => mostrarCaja(element.name, element.medal));
+			
 			
 
 		}
 		
-  			
+  		function mostrarCaja(nombre, medalla) {
+
+  			var elementDiv = document.createElement("div");
+  			var elementNombre = document.createElement("P");
+  			elementNombre.innerHTML = nombre;
+  			var elementMedalla = document.createElement("P");
+  			elementMedalla.innerHTML = medalla;
+
+  			elementDiv.appendChild(elementNombre);
+  			elementDiv.appendChild(elementMedalla);
+
+  			document.getElementById("myDIV").appendChild(elementDiv);
+		}
 
 
 
