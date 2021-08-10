@@ -4,111 +4,179 @@
 <head>
 	<meta charset="utf-8">
 	<title>Objetos en JS</title>
+	<style>
+	
+	.card {
+	  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+	  transition: 0.3s;
+	  width: 40%;
+	}
 
+	.card:hover {
+	  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+	}
+
+	.container {
+	  padding: 2px 16px;
+	}
+	.imagenH {
+	  background-image: url("https://www.w3schools.com/howto/img_avatar.png");
+	}
+	</style>
 </head>
 
 <body>
-	<label class="label" id="selector">
-		<select name="countries" id="countries" class="countries">
-			<option>Seleccionar país</option>
-			<option>Italy</option>
-			<option>Azerbaijan</option>
-			<option>Mexico</option>
-		</select>
-	</label>
+	
+	
 
-	<p id="show"></p>
+	<label for="country">Choose a country:</label>
+  	<select name="country" id="country">
+    <option value="Italy">Italy</option>
+    <option value="Mexico">Mexico</option>
+    <option value="Azerbaijan">Azerbaijan</option>
+    </select>
+    <br><br>
+    <label for="sport">Choose a sport:</label>
+  	<select name="sport" id="sport">
+    <option value="Soccer">Soccer</option>
+    <option value="Judo">Judo</option>
+    <option value="Taekwondo">Taekwondo</option>
+    </select>
+	
+	<div id="card" class="card"></div>
 	<script>
-
+		var contador = 0;
 		var objeto = {
-			"games": "Olympic Games",
-			"year": 2016,
-			"season": "summer",
-			"city": "Rio de Janeiro",
-			"athletes": [
-				{
-					"name": "Giovanni Abagnale",
-					"gender": "M",
-					"height": "198",
-					"weight": "90",
-					"sport": "Taekwondo",
-					"team": "Italy",
-					"noc": "ITA",
-					"age": 22,
-					"event": "Taekwondo Women's Flyweight",
-					"medal": "Bronze"
-				},
-				{
-					"name": "Mara del Rosario Espinoza Espinoza",
-					"gender": "F",
-					"height": "173",
-					"weight": "70",
-					"sport": "Taekwondo",
-					"team": "Mexico",
-					"noc": "MEX",
-					"age": 28,
-					"event": "Taekwondo Women's Heavyweight",
-					"medal": "Silver"
-				},
-				{
-					"name": "Patimat Abakarova",
-					"gender": "F",
-					"height": "165",
-					"weight": "49",
-					"sport": "Taekwondo",
-					"team": "Azerbaijan",
-					"noc": "AZE",
-					"age": 22,
-					"event": "Taekwondo Women's Flyweight",
-					"medal": "Silver"
-				},
-			]
-		};
-		let dataByTeam = objeto.athletes.filter(selectCountry);
-		function selectCountry(country) {
-			return country.team == ;
+	  		"games": "Olympic Games",
+		  	"year": 2016,
+		  	"season": "summer",
+		  	"city": "Rio de Janeiro",
+		  	"athletes": [
+		    {
+		      "name": "Giovanni Abagnale",
+		      "gender": "M",
+		      "height": "198",
+		      "weight": "90",
+		      "sport": "Taekwondo",
+		      "team": "Italy",
+		      "noc": "ITA",
+		      "age": 22,
+		      "event": "Taekwondo Women's Flyweight",
+		      "medal": "Bronze"
+		    },
+		    {
+		      "name": "Yoda",
+		      "gender": "H",
+		      "height": "165",
+		      "weight": "49",
+		      "sport": "Soccer",
+		      "team": "Azerbaijan",
+		      "noc": "AZE",
+		      "age": 24,
+		      "event": "Under 23",
+		      "medal": "Silver"
+		    },
+		    {
+		      "name": "Alonso",
+		      "gender": "H",
+		      "height": "165",
+		      "weight": "49",
+		      "sport": "Soccer",
+		      "team": "Azerbaijan",
+		      "noc": "AZE",
+		      "age": 22,
+		      "event": "Under 23",
+		      "medal": "Bronze"
+		    
+		    }]};
+
+
+		var globalPais;
+
+		let listaPais = document.getElementById("country")
+		
+
+		listaPais.addEventListener("change", function(e) {
+ 			globalPais = e.target.value;
+
+ 			compara(globalPais);
+		});
+		
+		
+		function compara(pais)
+		{
+			limpiar();
+			contador++;
+
+			let globalSport = document.getElementById("sport").value
+			//relleno de simios.
+			
+			
+
+			let arregloAtletas = objeto.athletes.filter(checkTeam)   
+
+			function checkTeam(elementoArreglo) {
+  				return elementoArreglo.team == globalPais && elementoArreglo.sport == globalSport;
+			}
+
+			
+
+			arregloAtletas.forEach(element => mostrarCaja(element.name, element.medal, element.team));
 		}
 		
-		
-
-
-
-
-		let countrySelect = document.getElementById("countries")
-		countrySelect.addEventListener("change", function (e) {
-			let select = (selectCountry(e.target.value))
-			document.getElementById("show").innerHTML = e.target.value;
-			//select.forEach((countrySelect) => {
-			//	show.appendChild(mostrar(cadena_recibida));
-			});
-		//})
-		
-
-
-
-		/*function compara() {
-			//simulando que traigo un selector - > Team : "Italy"
-	
-			let pais = "Italy";
-	
-			//simulando que traigo un selector - > Sport : "Football"
-			let deporte = "Taekwondo";
-	
-	
-			//suponiendo que me piden Italy y Football:
-	
-	
-			if (objeto.athletes[0].sport == deporte && objeto.athletes[0].team == pais)
-				mostrar(pais + " " + deporte);
+  		
+		function mostrar(cadena_recibida)
+		{
+			alert(cadena_recibida);
 		}
-*/
+		function limpiar()
+		{
+			
+			let root = document.getElementById("card")
+			while(root.firstChild){
+				root.removeChild(root.firstChild);
+			}
+			
+		}
+		function mostrarCaja(nombre, medalla, pais) {
 
+  			
+  			 			
 
-
-
+  			//contenedor menor
+  			var elementDiv = document.createElement("div");
+  			elementDiv.className += "container";
 
 		selectCountry();
 
+  			//imagen
+  			var elementImagen = document.createElement("img");
+  			elementImagen.className += "imagenH";
+
+  			var elementNombre = document.createElement("P");
+  			elementNombre.innerHTML = nombre;
+  			var elementMedalla = document.createElement("P");
+  			elementMedalla.innerHTML = medalla;
+  			var elementPais = document.createElement("P");
+  			elementPais.innerHTML = pais;
+
+  			var elementEspacio = document.createElement("br");
+  			elementEspacio.innerHTML = "<br><br>" 
+
+  			elementDiv.appendChild(elementImagen);
+  			elementDiv.appendChild(elementNombre);
+  			elementDiv.appendChild(elementMedalla);
+  			elementDiv.appendChild(elementPais);
+  			elementDiv.appendChild(elementEspacio);
+
+
+  			
+  			document.getElementById("card").appendChild(elementDiv);
+		}
+
+		
+		//compara();
+		
 
 	</script>
 
