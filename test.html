@@ -4,18 +4,27 @@
 	<meta charset="utf-8">
 	<title>Objetos en JS</title>
 	<style>
-	div {
-  		border: 1px solid black;
-  		margin-bottom: 10px;
+	
+	.card {
+	  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+	  transition: 0.3s;
+	  width: 40%;
+	}
+
+	.card:hover {
+	  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+	}
+
+	.container {
+	  padding: 2px 16px;
+	}
+	.imagenH {
+	  background-image: url("https://www.w3schools.com/howto/img_avatar.png");
 	}
 	</style>
 </head>
 <body>
-	<div id="myDIV">
 	
-	</div>
-
-
 	<script>
 		
 		
@@ -126,24 +135,46 @@
 
 			
 			
-			atletasLimpiosOrdenados.forEach(element => mostrarCaja(element.name, element.medal));
+			atletasLimpiosOrdenados.forEach(element => mostrarCaja(element.name, element.medal, element.team));
 			
 			
 
 		}
 		
-  		function mostrarCaja(nombre, medalla) {
+  		function mostrarCaja(nombre, medalla, pais) {
 
+  			//contenedor mayor o card
+  			var randomN = Math.floor(Math.random() * 10);
+
+  			var cardDiv = document.createElement("div");
+  			cardDiv.className += "card";
+  			cardDiv.id = "card" + randomN
+  			idDiv = cardDiv.id;
+
+  			//contenedor menor
   			var elementDiv = document.createElement("div");
+  			elementDiv.className += "container";
+
+
+  			//imagen
+  			var elementImagen = document.createElement("img");
+  			elementImagen.className += "imagenH";
+
   			var elementNombre = document.createElement("P");
   			elementNombre.innerHTML = nombre;
   			var elementMedalla = document.createElement("P");
   			elementMedalla.innerHTML = medalla;
+  			var elementPais = document.createElement("P");
+  			elementPais.innerHTML = pais;
 
+  			elementDiv.appendChild(elementImagen);
   			elementDiv.appendChild(elementNombre);
   			elementDiv.appendChild(elementMedalla);
+  			elementDiv.appendChild(elementPais);
 
-  			document.getElementById("myDIV").appendChild(elementDiv);
+
+  			document.body.appendChild(cardDiv);
+  			document.getElementById(idDiv).appendChild(elementDiv);
 		}
 
 
