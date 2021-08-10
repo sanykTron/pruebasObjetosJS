@@ -1,48 +1,118 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<meta charset="utf-8">
 	<title>Objetos en JS</title>
-	
+
 </head>
+
 <body>
-	
+	<label class="label" id="selector">
+		<select name="countries" id="countries" class="countries">
+			<option>Seleccionar país</option>
+			<option>Italy</option>
+			<option>Azerbaijan</option>
+			<option>Mexico</option>
+		</select>
+	</label>
+
+	<p id="show"></p>
 	<script>
-		
-		
+
+		var objeto = {
+			"games": "Olympic Games",
+			"year": 2016,
+			"season": "summer",
+			"city": "Rio de Janeiro",
+			"athletes": [
+				{
+					"name": "Giovanni Abagnale",
+					"gender": "M",
+					"height": "198",
+					"weight": "90",
+					"sport": "Taekwondo",
+					"team": "Italy",
+					"noc": "ITA",
+					"age": 22,
+					"event": "Taekwondo Women's Flyweight",
+					"medal": "Bronze"
+				},
+				{
+					"name": "Mara del Rosario Espinoza Espinoza",
+					"gender": "F",
+					"height": "173",
+					"weight": "70",
+					"sport": "Taekwondo",
+					"team": "Mexico",
+					"noc": "MEX",
+					"age": 28,
+					"event": "Taekwondo Women's Heavyweight",
+					"medal": "Silver"
+				},
+				{
+					"name": "Patimat Abakarova",
+					"gender": "F",
+					"height": "165",
+					"weight": "49",
+					"sport": "Taekwondo",
+					"team": "Azerbaijan",
+					"noc": "AZE",
+					"age": 22,
+					"event": "Taekwondo Women's Flyweight",
+					"medal": "Silver"
+				},
+			]
+		};
+		let dataByTeam = objeto.athletes.filter(selectCountry);
+		function selectCountry(country) {
+			return country.team == ;
+		}
 		
 		
 
-		function compara()
-		{
+
+
+
+		let countrySelect = document.getElementById("countries")
+		countrySelect.addEventListener("change", function (e) {
+			let select = (selectCountry(e.target.value))
+			document.getElementById("show").innerHTML = e.target.value;
+			//select.forEach((countrySelect) => {
+			//	show.appendChild(mostrar(cadena_recibida));
+			});
+		//})
+		
+
+
+
+		/*function compara() {
 			//simulando que traigo un selector - > Team : "Italy"
-			
-			let pais = "Italy";	
-
+	
+			let pais = "Italy";
+	
 			//simulando que traigo un selector - > Sport : "Football"
-			let deporte = "Football";
-
-
+			let deporte = "Taekwondo";
+	
+	
 			//suponiendo que me piden Italy y Football:
-
-
-			if(deporte == "Football" && pais == "Italy")
-				mostrar(deporte + pais);
+	
+	
+			if (objeto.athletes[0].sport == deporte && objeto.athletes[0].team == pais)
+				mostrar(pais + " " + deporte);
 		}
-		
-  		
-		function mostrar(cadena_recibida)
-		{
-			alert(cadena_recibida);
-		}
+*/
 
 
-		
-		compara();
-		
+
+
+
+		selectCountry();
+
 
 	</script>
 
 
 </body>
+
 </html>
